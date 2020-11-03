@@ -1,3 +1,5 @@
+# buildah bud -f Dockerfile -t quay.io/emergencyresponsedemo/erdemo-operator:2.8 .
+
 FROM quay.io/operator-framework/ansible-operator:v1.0.1
 
 COPY requirements.yml ${HOME}/requirements.yml

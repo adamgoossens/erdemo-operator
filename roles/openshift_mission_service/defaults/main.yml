@@ -33,7 +33,6 @@ application_template: mission-service.yml
 kafka_bootstrap_service: "{{ kafka_cluster }}-kafka-bootstrap.{{ namespace_kafka_cluster }}.svc"
 kafka_bootstrap_port: 9092
 kafka_bootstrap_address: "{{ kafka_bootstrap_service }}:{{ kafka_bootstrap_port }}"
-kafka_groupid: mission-service
 
 kafka_create_mission_command_topic: topic-mission-command
 kafka_mission_updated_event_topic: topic-mission-event

@@ -2,6 +2,6 @@
 apiVersion: apps.erdemo.io/v1alpha1
 kind: ErDemo
 metadata:
-  name: erdemo-sample
+  name: erdemo
 spec:
   foo: bar

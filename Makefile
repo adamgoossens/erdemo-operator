@@ -1,7 +1,7 @@
 # Current Operator version
 VERSION ?= 0.0.1
 # Default bundle image tag
-BUNDLE_IMG ?= controller-bundle:$(VERSION)
+BUNDLE_IMG ?= erdemo-operator-bundle:$(VERSION)
 # Options for 'bundle-build'
 ifneq ($(origin CHANNELS), undefined)
 BUNDLE_CHANNELS := --channels=$(CHANNELS)
@@ -39,11 +39,11 @@ undeploy: kustomize
 
 # Build the docker image
 docker-build:
-	docker build . -t ${IMG}
+	buildah bud . -t ${IMG}
 
 # Push the docker image
 docker-push:
-	docker push ${IMG}
+	buildah push ${IMG}
 
 PATH  := $(PATH):$(PWD)/bin
 SHELL := env PATH=$(PATH) /bin/sh
@@ -89,4 +89,4 @@ bundle: kustomize
 # Build the bundle image.
 .PHONY: bundle-build
 bundle-build:
-	docker build -f bundle.Dockerfile -t $(BUNDLE_IMG) .
+	buildah bud -f bundle.Dockerfile -t $(BUNDLE_IMG) .

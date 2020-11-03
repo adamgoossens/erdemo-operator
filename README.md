@@ -2,7 +2,7 @@
 
 Ansible Operator for installing the Emergency Response demo.
 
-## Quick Start
+## End User Quick Start
 1. Login to an OpenShift cluster as a `cluster-admin`
 2. Create a `CatalogSource` to import the Emergency Response Demo operator catalog.
 ```bash
@@ -14,7 +14,7 @@ metadata:
   namespace: openshift-marketplace
 spec:
   sourceType: grpc
-  image: quay.io/akrohg/erdemo-operator-catalog:latest
+  image: quay.io/emergencyresponsedemo/erdemo-operator-catalog:0.0.1
   displayName: Emergency Response Demo Operator
   publisher: RedHatGov
 EOF
@@ -31,14 +31,28 @@ oc new-project erdemo-operator-system
 7. On the ErDemo Operator page, create a new `ErDemo` CustomResource, setting the value of **mapToken** to match [your own mapbox API token](https://account.mapbox.com/access-tokens/).
    ![](doc/images/olm_add_mapbox_token.png)
 
-## Development
+## Operator Test
 To install:
 1. Clone this repository and `cd` into it.
 ```
-git clone https://github.com/andykrohg/erdemo-operator
+git clone https://github.com/Emergency-Response-Demo/erdemo-operator
 cd erdemo-operator 
 ```
-1. Ensure you're logged in with `oc` as a `cluster-admin`
-1. Run `hack/operate.sh` to install the `CustomResourceDefinition` and accompanying assets, and to create a `Deployment` for the operator. It will be created in the `erdemo-operator-system` namespace.
-1. Create an `ErDemo` Custom Resource: `oc apply -n erdemo-operator-system -f config/samples/apps_v1alpha1_erdemo.yaml`
-1. Watch the progress in the logs of the `erdemo-operator-controller-manager` pod.
+2. Ensure you're logged in with `oc` as a `cluster-admin`
+3. Run `hack/operate.sh` to install the `CustomResourceDefinition` and accompanying assets, and to create a `Deployment` for the operator. It will be created in the `erdemo-operator-system` namespace.
+4. Create an `ErDemo` Custom Resource: `oc apply -n erdemo-operator-system -f config/samples/apps_v1alpha1_erdemo.yaml`
+5. Watch the progress in the logs of the `erdemo-operator-controller-manager` pod.
+
+## Operator Lifecycle Manager Test
+
+`````
+$ operator-sdk version
+
+$ make bundle
+$ make bundle-build
+$ podman tag localhost/erdemo-operator-bundle:0.0.1 quay.io/emergencyresponsedemo/erdemo-operator-bundle:0.0.1
+$ podman push quay.io/emergencyresponsedemo/erdemo-operator-bundle:0.0.1
+$ opm index add --bundles quay.io/emergencyresponsedemo/erdemo-operator-bundle:0.0.1 --tag quay.io/emergencyresponsedemo/erdemo-operator-catalog:0.0.1
+$ podman push quay.io/emergencyresponsedemo/erdemo-operator-catalog:0.0.1
+`````
+

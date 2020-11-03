@@ -367,7 +367,7 @@ function install_operator() {
     if [ -z "$operator_installed" ]; then
         validate_cluster || return 1
         error_run "Installing operator resources" make install || return 1
-        error_run "Deploying operator" make deploy IMG=$IMG:latest OVERLAY=$OVERLAY || return 1
+        error_run "Deploying operator" make deploy IMG=$IMG:$VERSION OVERLAY=$OVERLAY || return 1
     fi
     operator_installed=true
 }
@@ -377,7 +377,7 @@ function uninstall_operator() {
     #   logged in cluster
     validate_cluster || return 1
     undeploy_cr
-    warn_run "Undeploying operator" make undeploy IMG=$IMG:latest OVERLAY=$OVERLAY || :
+    warn_run "Undeploying operator" make undeploy IMG=$IMG:$VERSION OVERLAY=$OVERLAY || :
     warn_run "Uninstalling operator resources" make uninstall || :
     operator_installed=
 }
