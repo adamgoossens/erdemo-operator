@@ -1,4 +1,4 @@
-# buildah bud -f Dockerfile -t quay.io/emergencyresponsedemo/erdemo-operator:2.8 .
+# buildah bud -f Dockerfile -t quay.io/emergencyresponsedemo/erdemo-operator:$VERSION .
 
 FROM quay.io/operator-framework/ansible-operator:v1.0.1
 
