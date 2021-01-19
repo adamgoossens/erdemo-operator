@@ -5,4 +5,4 @@ kind: Kustomization
 images:
 - name: controller
   newName: quay.io/emergencyresponsedemo/erdemo-operator
-  newTag: 2.10.3
+  newTag: 2.10.4
