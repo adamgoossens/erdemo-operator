@@ -263,7 +263,7 @@ There are 3 ER-Demo related container images that are updated during this proces
 
 1. Set environment variables called: `VERSION` and `IMG`:
    `````
-   $ export VERSION=2.10.3
+   $ export VERSION=2.11.0                  #   Version of desired release of ER-Demo.  Note: version must be of convention: Major.Minor.Patch
    $ export IMG=quay.io/emergencyresponsedemo/erdemo-operator:$VERSION
    `````
 
@@ -296,6 +296,9 @@ There are 3 ER-Demo related container images that are updated during this proces
    $ buildah bud -f Dockerfile -t quay.io/emergencyresponsedemo/erdemo-operator:$VERSION .
    $ podman push quay.io/emergencyresponsedemo/erdemo-operator:$VERSION
    `````
+
+5. `move` the `latest' tag of each of the three ER-Demo operator images in quay.io to this latest $VERSION.
+    ie:  quay.io/emergencyresponsedemo/erdemo-operator:latest  should link to quay.io/emergencyresponsedemo/erdemo-operator:$VERSION
 
 
 # 4. Operator Development and Test
