@@ -49,7 +49,7 @@ MapBox APIs provide the Emergency Response application with an optimized route f
 1. Using the oc utility on your local machine, ensure that you are authenticated in your OCP 4 environment as a cluster-admin.
 1. OPTIONAL: Checkout the latest tag of this project:
    ```
-   git checkout 2.10
+   git checkout 2.11
    ```
 
 2. Set a shell environment variable of your map box token:
