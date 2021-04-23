@@ -17,25 +17,25 @@
 
 - name: copy openjdk imagestream template to work directory
   template:
-    src: "{{ resources_dir }}/{{ openjdk_template }}"
-    dest: "{{ work_dir }}/{{ openjdk_template }}"
+    src: "{{ resources_dir }}/{{ jdk_template }}"
+    dest: "{{ work_dir }}/{{ jdk_template }}"
 
-- name: create openjdk imagestream
+- name: "create {{ jdk_imagestream_name }} imagestream in the {{ namespace_tools }} project"
   oc_obj:
     state: present
     oc_binary: "{{ openshift_cli }}"
-    name: "{{ openjdk_imagestream_name }}"
-    namespace: "{{ application_image_namespace }}"
+    name: "{{ jdk_imagestream_name }}"
+    namespace: "{{ namespace_tools }}"
     kind: is
     files:
-      - "{{ work_dir }}/{{ openjdk_template }}"
+      - "{{ work_dir }}/{{ jdk_template }}"
 
 - name: copy imagestream template
   template:
     src: "{{ resources_dir }}/{{ imagestream_template }}"
     dest: "{{ work_dir }}/{{ imagestream_template }}"
 
-- name: create output imagestream in the {{ namespace }} project
+- name: create {{ imagestream_name }} imagestream in the {{ namespace }} project
   oc_obj:
     oc_binary: "{{ openshift_cli }}"
     state: present
@@ -45,7 +45,7 @@
     files:
       - "{{ work_dir }}/{{ imagestream_template }}"
 
-- name: create output imagestream in the {{ namespace_tools }} project
+- name: create {{ imagestream_name }} imagestream in the {{ namespace_tools }} project
   oc_obj:
     oc_binary: "{{ openshift_cli }}"
     state: present

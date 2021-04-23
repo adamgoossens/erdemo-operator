@@ -57,7 +57,7 @@ items:
               value: "true"
             - name: MAVEN_MIRROR_URL
               value: {{ nexus_mirror }}
-            - name: JAVA_OPTIONS
+            - name: JAVA_OPTS_APPEND
               value: '-Dkie.maven.settings.custom=/m2/settings.xml'
             imagePullPolicy: IfNotPresent
             name: {{ application_name }}

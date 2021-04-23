@@ -78,12 +78,13 @@ image_imagestream_template: process-service-image-is.yml
 
 application_template: process-service.yml
 
-openjdk_template: openjdk-imagestream.yml
-openjdk_imagestream_name: openjdk18-openshift
-openjdk_imagestream_tag: 1.6
+# https://github.com/Emergency-Response-Demo/container-images/tree/master/ubi8-java11-mvn 
+jdk_template: jdk-imagestream.yml
+jdk_imagestream_name: ubi8-jdk-11-mvn
+jdk_imagestream_tag: 0.0.2
 
-application_image: openjdk18-openshift:1.6
-application_image_namespace: openshift
+application_image: "{{ jdk_imagestream_name }}:{{ jdk_imagestream_tag }}"
+application_image_namespace: "{{ namespace_tools }}"
 
 incident_process_assignment_delay: PT20S
 
