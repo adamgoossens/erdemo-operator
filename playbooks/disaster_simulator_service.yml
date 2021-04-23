@@ -6,6 +6,7 @@
   gather_facts: false
   run_once: true
   vars_files:
+    - group_vars/inventory.yml
     - group_vars/services.yml
     - group_vars/postgresql.yml
     - group_vars/kafka_cluster.yml

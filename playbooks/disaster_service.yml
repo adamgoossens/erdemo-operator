@@ -6,6 +6,7 @@
   gather_facts: false
   run_once: true
   vars_files:
+    - group_vars/inventory.yml
     - group_vars/services.yml
     - group_vars/tools.yml
     - group_vars/datagrid.yml
