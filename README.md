@@ -263,7 +263,7 @@ There are 3 ER-Demo related container images that are updated during this proces
 
 1. Set environment variables called: `VERSION` and `IMG`:
    `````
-   $ export VERSION=2.11.0                  #   Version of desired release of ER-Demo.  Note: version must be of convention: Major.Minor.Patch
+   $ export VERSION=2.12.0                  #   Version of desired release of ER-Demo.  Note: version must be of convention: Major.Minor.Patch
    $ export IMG=quay.io/emergencyresponsedemo/erdemo-operator:$VERSION
    `````
 
